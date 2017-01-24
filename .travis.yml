@@ -1,0 +1,22 @@
+sudo: required
+
+language: scala
+
+notifications:
+  slack:
+    secure: VTtxrPU01wm0Kwdpb1RnA9tMQbjdO2/y0W1y/zqwOOrlzcvNjA/EnItF/gZIKktsraShb1+0nzVesWAU+5xAdLEKOJNCo7ipaooBbdFTGv8CnPxP4X3LDnQ86ReMfmbZLBpe86fm3ZTKC5PWKwoYKKfpSqqTXLHt0HUl3HX2lN+2M7minku+pTIk5OEyVTMSsqignJea3SvhS9Uk9L0qwhKa/TFZQnKW11van4QMOejZ1cxVrsTLcqK4s6J61CWc3l3PxSHdmDFwBA2bsy1SAlOTlBKrOfRwtdRkUfxAQdXFybJLzawkgphpDz2+MJnDYQtoy3xeflsjQYW8ST7X/ucIujP4rlsJoS03CdS2UeFX1CD1ZhR/2tR+CV2d+bY8Kol6tzCeeu3Fd+eKaCOfLWk6SRBpQ3kNtzlB3LE0LkrGG2iozV6tTS5S3cvg2+8QlNJ93/anxj+6PsYcjuJUBBBXhunKfuaL3Z35ewLTEleHUt0Kjx5KYc5V3tQXdYAsFsxKNPIqK8rgR3lsjU6J5AfZmQO7MVz5w5ts4vFfZOJ23ZIBoJwuwdgpSxWanPo+z0gZfcop4XRbU41DgfomDQxNzWOG6sIFUUE4dlx7U36S+uEdCf3AJ+6AZHAPd+6QqWwOuoOticoTv0HHXLHyGBCZLShI7xVZ7I9ceojUgTY=
+
+# These directories are cached to S3 at the end of the build.
+cache:
+  directories:
+  - $HOME/.ivy2/cache
+  - $HOME/.sbt/boot/
+
+services:
+- docker
+
+before_install:
+- make docker
+
+script:
+- make docker-test
